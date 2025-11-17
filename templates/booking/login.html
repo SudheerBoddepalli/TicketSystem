@@ -1,0 +1,14 @@
+<!-- templates/registration/login.html -->
+{% extends "booking/auth_landing.html" %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Login</h3>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
