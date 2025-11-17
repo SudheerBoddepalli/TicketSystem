@@ -1,7 +1,9 @@
 Django==5.2.8
 gunicorn
+psycopg2-binary
 dj-database-url
 whitenoise
 python-dotenv
 Pillow
-psycopg2-binary
+django-storages[boto3]  # only if you plan to use S3 for media
+boto3                   # if using S3
