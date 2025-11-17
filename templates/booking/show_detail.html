@@ -1,0 +1,24 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h2>{{ show.title }}</h2>
+{% if show.image %}
+  <img src="{{ show.image.url }}" class="img-fluid mb-3" alt="{{ show.title }}">
+{% endif %}
+<p>{{ show.description }}</p>
+<p><strong>Venue:</strong> {{ show.venue.name }}</p>
+<p><strong>When:</strong> {{ show.start_time }} - {{ show.end_time }}</p>
+<p><strong>Available seats:</strong> {{ show.available_seats }}</p>
+<p><strong>Price per seat:</strong> ₹{{ show.price }}</p>
+
+{% if user.is_authenticated %}
+  <form method="post" action="{% url 'booking:book_show' show.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">Book Now</button>
+  </form>
+{% else %}
+  <p>Please <a href="/accounts/login/">login</a> to book tickets.</p>
+{% endif %}
+
+<a href="{% url 'booking:home' %}">Back to Home</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'booking/base.html' %}
+{% block content %}
+<h1>My Bookings</h1>
+<table class="table">
+  <thead><tr><th>ID</th><th>Show</th><th>Seats</th><th>Total</th><th>Booked at</th></tr></thead>
+  <tbody>
+    {% for b in bookings %}
+      <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.show.title }}</td>
+        <td>{{ b.seats_booked }}</td>
+        <td>₹{{ b.total_price }}</td>
+        <td>{{ b.booked_at }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="5">No bookings found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
