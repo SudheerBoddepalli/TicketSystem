@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: TicketSystem
+    env: python
+    region: singapore
+    plan: free
+
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn ticket_system.wsgi:application"
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10
+
+      - key: DJANGO_SETTINGS_MODULE
+        value: ticket_system.settings
+
+      - key: SECRET_KEY
+        generateValue: true
+
+      - key: ALLOWED_HOSTS
+        value: "*"
+
+      - key: DEBUG
+        value: "False"
+
+staticPublishPath: static
